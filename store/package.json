@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "build:cloudflare": "node scripts/build-cloudflare.mjs",
     "postbuild": "node scripts/sanitize-build.mjs && node scripts/check-secrets.mjs --build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",

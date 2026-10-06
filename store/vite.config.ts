@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 
 const { r2 } = hostingConfig;
+const ownCloudflare = process.env.FFG_DEPLOY_TARGET === "cloudflare";
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
@@ -41,10 +42,12 @@ export default defineConfig(async () => {
     },
     plugins: [
       vinext(),
-      sites(),
+      ...(ownCloudflare ? [] : [sites()]),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
-        config: localBindingConfig,
+        ...(ownCloudflare
+          ? { configPath: "wrangler.production.json" }
+          : { config: localBindingConfig }),
       }),
     ],
   };
