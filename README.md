@@ -56,7 +56,3 @@ git config core.hooksPath .githooks
 ```sh
 npm run security:history
 ```
-
-Проверки перед выпуском, настройка секретов и резервные копии описаны в [SECURITY.md](store/SECURITY.md).
-
-Пошаговый первый запуск: [DEPLOYMENT.md](DEPLOYMENT.md).
