@@ -1,0 +1,57 @@
+{
+  "name": "sites-project",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "postbuild": "node scripts/sanitize-build.mjs && node scripts/check-secrets.mjs --build",
+    "start": "vinext start",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "db:generate": "drizzle-kit generate",
+    "security:scan": "node scripts/check-secrets.mjs",
+    "security:history": "node scripts/check-secrets.mjs --history",
+    "security:build": "node scripts/check-secrets.mjs --build",
+    "prebuild": "node scripts/check-secrets.mjs"
+  },
+  "dependencies": {
+    "drizzle-orm": "0.45.2",
+    "image-size": "2.0.4",
+    "next": "16.3.8",
+    "otpauth": "9.5.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.56.0",
+    "@cloudflare/workers-types": "5.20260920.1",
+    "@openai/sites-vite-plugin": "^0.1.0 || ^0.2.0",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.34",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.8",
+    "miniflare": "5.20260918.0-alpha",
+    "react-server-dom-webpack": "19.3.0",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "1.0.0-beta.10",
+    "vite": "8.3.0",
+    "wrangler": "4.135.0"
+  },
+  "type": "module",
+  "overrides": {
+    "@esbuild-kit/core-utils": {
+      "esbuild": "0.28.2"
+    },
+    "source-map-js": "1.2.2",
+    "undici": "7.29.1"
+  }
+}

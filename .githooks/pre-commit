@@ -1,0 +1,2 @@
+#!/bin/sh
+node store/scripts/check-secrets.mjs --staged
