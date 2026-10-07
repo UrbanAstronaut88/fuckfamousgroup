@@ -33,7 +33,7 @@ npm ci
 npm run dev
 ```
 
-При первом запуске также нужна настройка локальной базы и секретов: см. [инструкцию приложения](store/README.md) и [руководство владельца](store/OWNER_GUIDE.md).
+При первом запуске также нужна настройка локальной базы и секретов: см. [инструкцию приложения](store/README.md).
 
 Чтобы включить локальную проверку перед коммитом после клонирования, выполните из корня репозитория:
 
@@ -56,3 +56,28 @@ git config core.hooksPath .githooks
 ```sh
 npm run security:history
 ```
+
+## Cloudflare
+
+Технический адрес: https://fckfamousgroup.fckfamousgroup.workers.dev
+
+Админка: https://fckfamousgroup.fckfamousgroup.workers.dev/dima_dinamo_admin
+
+07.10.2026 каталог (10 активных позиций), две фотографии из локального R2 и настройки
+существующего администратора перенесены в новый аккаунт владельца Cloudflare.
+При первом входе настройте обязательный второй фактор и сохраните резервные коды.
+Домен fckfamous.group пока не подключён. Изменения каталога на localhost не синхронизируются с сайтом.
+
+Настоящие идентификаторы ресурсов находятся в игнорируемом `store/wrangler.production.json`;
+шаблон без секретов — `store/wrangler.production.example.json`. Секреты хранятся в Cloudflare Secrets.
+Одноразовый `ADMIN_INITIAL_CREDENTIAL` удалён после инициализации учётной записи в D1.
+Для повторного деплоя из `store`, после успешных проверок:
+
+```sh
+npm run build:cloudflare
+npx wrangler deploy --config dist/server/wrangler.json
+```
+
+После обновления sharp до 0.35.5 production-аудит (`npm audit --omit=dev`) не обнаружил
+известных уязвимостей. Полный аудит всё ещё сообщает о GHSA-vfj7-8cjw-p6xm в braces 3.0.3
+через инструменты разработки; проверка CI не подавлена.

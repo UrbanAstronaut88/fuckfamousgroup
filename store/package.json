@@ -49,6 +49,7 @@
   },
   "type": "module",
   "overrides": {
+    "sharp": "0.35.5",
     "@esbuild-kit/core-utils": {
       "esbuild": "0.28.2"
     },
